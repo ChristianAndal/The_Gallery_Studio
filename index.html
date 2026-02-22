@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Gallery Studio | Professional Photo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f0ea;
+      --surface: #fffdf8;
+      --ink: #1f1f1f;
+      --muted: #63615d;
+      --accent: #b8743a;
+      --accent-deep: #8c5324;
+      --line: #e6ded2;
+      --radius: 18px;
+      --shadow-soft: 0 14px 40px rgba(31, 31, 31, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      background: radial-gradient(circle at top right, #f8e6d8 0%, var(--bg) 42%, #eee5da 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 253, 248, 0.82);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(230, 222, 210, 0.8);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.4rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.65rem 1.15rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      background: var(--accent-deep);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 2.2rem;
+      align-items: center;
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
+      line-height: 1.12;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.45rem, 5vw, 4.7rem);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 54ch;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.45rem;
+    }
+
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.65rem 1.15rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: var(--surface);
+      transition: border-color 160ms ease;
+    }
+
+    .ghost-btn:hover {
+      border-color: #c9b8a2;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-stats strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.15rem;
+      font-family: "Cormorant Garamond", serif;
+      margin-bottom: 0.08rem;
+    }
+
+    .hero-media {
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 500px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      animation: subtleZoom 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes subtleZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+
+    section {
+      padding: 1.2rem 0 3.6rem;
+    }
+
+    .section-head {
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 3.1vw, 3rem);
+    }
+
+    .section-head p {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 0.98rem;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 1.2rem;
+      box-shadow: 0 8px 22px rgba(31, 31, 31, 0.05);
+      transform: translateY(8px);
+      opacity: 0;
+      animation: riseIn 700ms ease forwards;
+    }
+
+    .service-card:nth-child(2) { animation-delay: 120ms; }
+    .service-card:nth-child(3) { animation-delay: 220ms; }
+
+    @keyframes riseIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .portfolio-item {
+      overflow: hidden;
+      border-radius: 14px;
+      min-height: 230px;
+      border: 1px solid #eadfce;
+      background: #f0e6db;
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 250ms ease;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 14px;
+      min-height: 360px;
+      object-fit: cover;
+      border: 1px solid #eadfce;
+    }
+
+    .about p {
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    blockquote {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem 1.15rem;
+      font-size: 0.98rem;
+      color: #3a3834;
+      box-shadow: 0 8px 22px rgba(31, 31, 31, 0.05);
+    }
+
+    blockquote span {
+      display: block;
+      margin-top: 0.7rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .contact-banner {
+      background: linear-gradient(135deg, #2f2b28, #5a3a23);
+      border-radius: var(--radius);
+      color: #fff;
+      padding: 1.5rem 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-banner h3 {
+      font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+    }
+
+    .contact-banner p {
+      opacity: 0.9;
+      max-width: 56ch;
+      font-size: 0.95rem;
+    }
+
+    .contact-banner .cta-btn {
+      background: #fff;
+      color: #2f2b28;
+    }
+
+    .site-footer {
+      padding: 2.6rem 0 2rem;
+      color: #6a6864;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 950px) {
+      .hero,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-media {
+        min-height: 360px;
+      }
+
+      .services {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .services,
+      .portfolio-grid,
+      .testimonials {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 3.2rem;
+      }
+
+      .hero-media {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#">The Gallery Studio</a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <a class="cta-btn" href="#contact">Book Session</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero">
+      <div>
+        <h1>Professional Photo Studio for Modern Brands & Portraits</h1>
+        <p>
+          We craft polished, story-driven photography for individuals, families, and businesses. Every frame is designed with precise lighting, timeless composition, and editorial-level retouching.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-btn" href="#contact">Schedule Consultation</a>
+          <a class="ghost-btn" href="#portfolio">View Work</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <strong>850+</strong>
+            Sessions Delivered
+          </div>
+          <div>
+            <strong>4.9/5</strong>
+            Client Satisfaction
+          </div>
+          <div>
+            <strong>12 yrs</strong>
+            Studio Experience
+          </div>
+        </div>
+      </div>
+      <figure class="hero-media">
+        <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=1100&q=80" alt="Professional photographer in a modern studio setting" />
+      </figure>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>Signature Services</h2>
+          <p>From clean corporate portraits to magazine-style fashion shoots, we tailor each session with creative direction and production support.</p>
+        </div>
+        <div class="services">
+          <article class="service-card">
+            <h3>Portrait Sessions</h3>
+            <p>Studio and lifestyle portraits with cinematic lighting and natural direction.</p>
+          </article>
+          <article class="service-card">
+            <h3>Brand Photography</h3>
+            <p>On-brand visuals for websites, campaigns, and social media storytelling.</p>
+          </article>
+          <article class="service-card">
+            <h3>Event Coverage</h3>
+            <p>Refined event documentation with fast turnaround and premium editing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Portfolio</h2>
+          <p>A curated collection from our latest editorial, portrait, and brand commissions.</p>
+        </div>
+        <div class="portfolio-grid">
+          <figure class="portfolio-item"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Fashion portrait in warm light" /></figure>
+          <figure class="portfolio-item"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Professional business portrait" /></figure>
+          <figure class="portfolio-item"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80" alt="Creative close-up portrait" /></figure>
+          <figure class="portfolio-item"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80" alt="Studio portrait with dramatic shadows" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1100&q=80" alt="Camera and photography equipment in studio" />
+        <div>
+          <div class="section-head">
+            <h2>Driven by Craft</h2>
+          </div>
+          <p>
+            The Gallery Studio blends artistic direction with commercial precision. Our team handles concept planning, wardrobe guidance, lighting design, and post-production under one roof.
+          </p>
+          <p>
+            We focus on creating images that feel luxurious, authentic, and built to represent your story with clarity.
+          </p>
+          <a class="ghost-btn" href="#contact">Discuss Your Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Client Feedback</h2>
+          <p>Our clients trust us for both creative quality and a smooth, professional production process.</p>
+        </div>
+        <div class="testimonials">
+          <blockquote>
+            “The direction was exceptional and the final images elevated our entire campaign. The team is organized, responsive, and truly creative.”
+            <span>Sarah M. | Brand Director</span>
+          </blockquote>
+          <blockquote>
+            “I needed a polished portrait set for my profile and press kit. Everything from styling to retouching felt premium and effortless.”
+            <span>David R. | Entrepreneur</span>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-banner">
+        <div>
+          <h3>Ready to Build Your Next Photo Story?</h3>
+          <p>Book a consultation and receive a custom session plan with timeline, mood direction, and package options.</p>
+        </div>
+        <a class="cta-btn" href="mailto:hello@gallerystudio.com">hello@gallerystudio.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 The Gallery Studio. Crafted for professional photography.</p>
+    </div>
+  </footer>
+</body>
+</html>
